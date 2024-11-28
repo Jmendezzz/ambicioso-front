@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap');
+@import "tailwindcss";
+
+@theme{
+  --color-primary: #00BF63;
+}
+body {
+  background: url('assets/background.jpg') no-repeat;
+  background-size: cover;
+  opacity: 1;
+  margin: 0;
+  padding: 0;
+  font-family: "Sedgwick Ave", cursive;
+  font-weight: 400;
+  font-style: normal;
+
+  width: 100%;
+  min-height: 100vh;
+  color: white;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  background: rgba(3, 7, 3, 0.92); 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  min-height: 100vh;
+  display: flex;
+  height: 100%;
+
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.neon-button {
+  background-color: #00bf63;
+  border: none;
+  outline: none;
+  position: relative;
+  z-index: 0;
+  box-shadow: 0 0 5px #00bf63, 0 0 10px #00bf63, 0 0 15px #00bf63, 0 0 20px #00bf63, 0 0 25px #00bf63, 0 0 30px #00bf63, 0 0 35px #00bf63;
+}
+
+.neon-button:hover {
+  box-shadow: 0 0 10px #00bf63, 0 0 20px #00bf63, 0 0 30px #00bf63, 0 0 40px #00bf63, 0 0 50px #00bf63, 0 0 60px #00bf63, 0 0 70px #00bf63;
+}
+
+.neon-button:active {
+  box-shadow: 0 0 5px #00bf63, 0 0 10px #00bf63, 0 0 15px #00bf63, 0 0 20px #00bf63, 0 0 25px #00bf63, 0 0 30px #00bf63, 0 0 35px #00bf63;
+}
+
+
+input:focus {
+  outline: none;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 0.01px #000000; 
+}
+
+/* Contenedor del dado */
+.dice-container {
+  width: 200px;
+  height: 200px;
+  perspective: 1000px;
+  margin: 0 auto;
+}
+
+/* Configuración del cubo */
+#cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s ease-in-out; /* Smooth transition for the rotation */
+}
+
+.face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  border: 2px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: black; 
+}
+
+.front .dot1 { top: 85px; left: 85px; }
+.back .dot1 { top: 45px; left: 45px; }
+.back .dot2 { top: 125px; left: 125px; }
+.right .dot1 { top: 45px; left: 45px; }
+.right .dot2 { top: 85px; left: 85px; }
+.right .dot3 { top: 125px; left: 125px; }
+.left .dot1 { top: 45px; left: 45px; }
+.left .dot2 { top: 45px; left: 125px; }
+.left .dot3 { top: 125px; left: 45px; }
+.left .dot4 { top: 125px; left: 125px; }
+.top .dot1 { top: 45px; left: 45px; }
+.top .dot2 { top: 45px; left: 125px; }
+.top .dot3 { top: 85px; left: 85px; }
+.top .dot4 { top: 125px; left: 45px; }
+.top .dot5 { top: 125px; left: 125px; }
+.bottom .dot1 { top: 45px; left: 45px; }
+.bottom .dot2 { top: 45px; left: 85px; }
+.bottom .dot3 { top: 45px; left: 125px; }
+.bottom .dot4 { top: 125px; left: 45px; }
+.bottom .dot5 { top: 125px; left: 85px; }
+.bottom .dot6 { top: 125px; left: 125px; }
+
+.front { transform: translateZ(100px); }
+.back { transform: rotateY(180deg) translateZ(100px); }
+.right { transform: rotateY(90deg) translateZ(100px); }
+.left { transform: rotateY(-90deg) translateZ(100px); }
+.top { transform: rotateX(90deg) translateZ(100px); }
+.bottom { transform: rotateX(-90deg) translateZ(100px); }

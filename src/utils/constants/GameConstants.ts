@@ -1,0 +1,1 @@
+export const MAXIMUM_SCORE = 50;
