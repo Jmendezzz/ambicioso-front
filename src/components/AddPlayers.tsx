@@ -36,13 +36,23 @@ export default function AddPlayers() {
   };
 
   const handleAddPlayer = () => {
+    const players = state.players.map((player, index) => {
+      return { ...player, name: `Jugador ${index + 1}` };
+    });
     const newPlayer = {
-      id: state.players.length + 1,
+      id: Date.now(),
       name: `Jugador ${state.players.length + 1}`,
       score: 0,
     };
-    dispatch({ type: GameActionsTypes.ADD_PLAYER, player: newPlayer });
+    players.push(newPlayer);
+
+    dispatch({ type: GameActionsTypes.UPDATE_PLAYERS, payload:players});
   };
+
+  const handleDeletePlayer = (id: number) => {
+    const players = state.players.filter((player) => player.id !== id);
+    dispatch({ type: GameActionsTypes.UPDATE_PLAYERS, payload: players });
+  }
 
   const onGameStart = () => {
     dispatch({ type: GameActionsTypes.START });
@@ -53,10 +63,10 @@ export default function AddPlayers() {
     numPlayers === 0
       ? 'grid-cols-1'
       : numPlayers === 1
-      ? 'grid-cols-1'
-      : numPlayers === 2
-      ? 'grid-cols-2'
-      : 'grid-cols-3';
+        ? 'grid-cols-1'
+        : numPlayers === 2
+          ? 'grid-cols-2'
+          : 'grid-cols-3';
 
   return (
     <motion.section
@@ -65,7 +75,7 @@ export default function AddPlayers() {
       initial="hidden"
       animate="visible"
     >
-      <h2 className="text-6xl text-center antialiased stroke-primary font-extrabold">
+      <h2 className="text-4xl text-center antialiased stroke-primary font-extrabold">
         JUGADORES
       </h2>
       <div
@@ -77,12 +87,21 @@ export default function AddPlayers() {
             className="flex text-2xl justify-center items-center w-full"
             variants={itemVariants}
           >
-            <input
-              className="text-center w-full hover:border-white transition focus:border-white focus:shadow-lg backdrop-filter backdrop-blur-lg bg-blur border-3 rounded-sm py-2 border-primary outline-primary"
-              onChange={(e) => handleNameChange(e, player.id)}
-              placeholder="Nombre del Jugador"
-              value={player.name}
-            />
+
+            <div className='relative'>
+              <input
+                className="text-center  w-full hover:border-white transition focus:border-white focus:shadow-lg backdrop-filter backdrop-blur-lg bg-blur border-3 rounded-sm py-2 border-primary outline-primary"
+                onChange={(e) => handleNameChange(e, player.id)}
+                placeholder="Nombre del Jugador"
+                value={player.name}
+              />
+              <button id="delete-player"
+                className='absolute right-0 h-full mr-4 font-bold text-red-600 cursor-pointer' onClick={()=>handleDeletePlayer(player.id)}>x</button>
+              <Tooltip place="bottom" anchorSelect="#delete-player">
+                Eliminar Jugador
+              </Tooltip>
+            </div>
+
           </motion.div>
         ))}
         <div className="col-span-full flex justify-center">
@@ -100,8 +119,8 @@ export default function AddPlayers() {
 
       </div>
       <div className="w-full flex justify-center mt-10">
-          <Button onClick={onGameStart}>EMPEZAR PARTIDA!</Button>
-        </div>
+        <Button onClick={onGameStart}>EMPEZAR PARTIDA!</Button>
+      </div>
     </motion.section>
   );
 }
