@@ -8,17 +8,13 @@ export interface GameContextState {
 }
 
 export enum GameActionsTypes {
-  START = 'START',
-  ADDING_PLAYERS = 'ADDING_PLAYERS',
-  END = 'END',
+  CHANGE_GAME_STATE = 'CHANGE_GAME_STATE',
   ADD_PLAYER = 'ADD_PLAYER',
   UPDATE_PLAYERS = 'UPDATE_PLAYERS',
   UPDATE_TURN = 'UPDATE_TURN',
 }
 export type GameAction =
-  | { type: GameActionsTypes.START }
-  | { type: GameActionsTypes.ADDING_PLAYERS }
-  | { type: GameActionsTypes.END }
+  | { type: GameActionsTypes.CHANGE_GAME_STATE; payload: GameState }
   | { type: GameActionsTypes.ADD_PLAYER; player: Player }
   | { type: GameActionsTypes.UPDATE_PLAYERS; payload: Player[]}
   | { type: GameActionsTypes.UPDATE_TURN; payload: number};
@@ -29,12 +25,8 @@ export const gameReducer = (
   action: GameAction
 ): GameContextState => {
   switch (action.type) {
-    case GameActionsTypes.START:
-      return { ...state, gameState: GameState.STARTED };
-    case GameActionsTypes.ADDING_PLAYERS:
-        return { ...state, gameState: GameState.ADDING_PLAYERS };
-    case GameActionsTypes.END:
-      return { ...state, gameState: GameState.ENDED };
+    case GameActionsTypes.CHANGE_GAME_STATE:
+      return { ...state, gameState: action.payload };
     case GameActionsTypes.ADD_PLAYER:
       return { ...state, players: [...state.players, action.player] };
     case GameActionsTypes.UPDATE_PLAYERS:

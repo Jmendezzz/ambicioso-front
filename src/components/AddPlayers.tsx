@@ -3,6 +3,8 @@ import { GameActionsTypes } from '../reducers/gameReducer';
 import { motion } from 'framer-motion';
 import { Tooltip } from 'react-tooltip';
 import Button from './Button';
+import { MIN_PLAYERS } from '../utils/constants/GameConstants';
+import { GameState } from '../models/GameState';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -46,27 +48,32 @@ export default function AddPlayers() {
     };
     players.push(newPlayer);
 
-    dispatch({ type: GameActionsTypes.UPDATE_PLAYERS, payload:players});
+    dispatch({ type: GameActionsTypes.UPDATE_PLAYERS, payload: players });
   };
 
   const handleDeletePlayer = (id: number) => {
+    if (state.players.length === MIN_PLAYERS) return;
     const players = state.players.filter((player) => player.id !== id);
     dispatch({ type: GameActionsTypes.UPDATE_PLAYERS, payload: players });
-  }
+  };
 
   const onGameStart = () => {
-    dispatch({ type: GameActionsTypes.START });
-  }
+    dispatch({
+      type: GameActionsTypes.UPDATE_TURN,
+      payload: state.players[0].id,
+    });
+    dispatch({ type: GameActionsTypes.CHANGE_GAME_STATE, payload: GameState.PLAYER_TURN });
+  };
 
   const numPlayers = state.players.length;
   const gridColsClass =
     numPlayers === 0
       ? 'grid-cols-1'
       : numPlayers === 1
-        ? 'grid-cols-1'
-        : numPlayers === 2
-          ? 'grid-cols-2'
-          : 'grid-cols-3';
+      ? 'grid-cols-1'
+      : numPlayers === 2
+      ? 'grid-cols-2'
+      : 'grid-cols-3';
 
   return (
     <motion.section
@@ -87,21 +94,28 @@ export default function AddPlayers() {
             className="flex text-2xl justify-center items-center w-full"
             variants={itemVariants}
           >
-
-            <div className='relative'>
+            <div className="relative">
               <input
                 className="text-center  w-full hover:border-white transition focus:border-white focus:shadow-lg backdrop-filter backdrop-blur-lg bg-blur border-3 rounded-sm py-2 border-primary outline-primary"
                 onChange={(e) => handleNameChange(e, player.id)}
                 placeholder="Nombre del Jugador"
                 value={player.name}
               />
-              <button id="delete-player"
-                className='absolute right-0 h-full mr-4 font-bold text-red-600 cursor-pointer' onClick={()=>handleDeletePlayer(player.id)}>x</button>
-              <Tooltip place="bottom" anchorSelect="#delete-player">
-                Eliminar Jugador
-              </Tooltip>
+              {state.players.length > MIN_PLAYERS && (
+                <>
+                  <button
+                    id="delete-player"
+                    className="absolute right-0 h-full mr-4 font-bold text-red-600 cursor-pointer"
+                    onClick={() => handleDeletePlayer(player.id)}
+                  >
+                    x
+                  </button>
+                  <Tooltip place="bottom" anchorSelect="#delete-player">
+                    Eliminar Jugador
+                  </Tooltip>
+                </>
+              )}
             </div>
-
           </motion.div>
         ))}
         <div className="col-span-full flex justify-center">
@@ -116,7 +130,6 @@ export default function AddPlayers() {
             Agregar Jugador
           </Tooltip>
         </div>
-
       </div>
       <div className="w-full flex justify-center mt-10">
         <Button onClick={onGameStart}>EMPEZAR PARTIDA!</Button>

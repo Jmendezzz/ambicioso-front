@@ -2,11 +2,12 @@ import { motion } from 'framer-motion';
 import Button from './Button';
 import { useGameContext } from '../contexts/GameContext';
 import { GameActionsTypes } from '../reducers/gameReducer';
+import { GameState } from '../models/GameState';
 
 function InitGame() {
   const {dispatch} = useGameContext();
   const handleClick = () => {
-    dispatch({type: GameActionsTypes.ADDING_PLAYERS});
+    dispatch({type: GameActionsTypes.CHANGE_GAME_STATE, payload: GameState.ADDING_PLAYERS});
   }
   return (
     <div className="flex-1 p-4 w-full h-full flex flex-col  items-center justify-center">

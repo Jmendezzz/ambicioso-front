@@ -1,9 +1,19 @@
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.png';
 
-function Logo() {
-  return (
-    <img src={logo} alt="Logo" className="w-1/4 h-[300px] min-w-[400px] select-none" />
-  )
+interface LogoProps {
+  className?: string;
+  width?: string;
+  height?: string;
 }
 
-export default Logo
+function Logo({ className, width = 'w-1/4', height = 'h-[300px]' }: LogoProps) {
+  return (
+    <img
+      src={logo}
+      alt="Logo"
+      className={`select-none ${width} ${height} ${className}`}
+    />
+  );
+}
+
+export default Logo;

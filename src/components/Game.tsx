@@ -32,7 +32,7 @@ function Game() {
           <Header />
           {state.gameState === GameState.NOT_STARTED && <InitGame />}
           {state.gameState === GameState.ADDING_PLAYERS && <AddPlayers />}
-          {state.gameState === GameState.STARTED && <PlayerTurn />}
+          {state.gameState === GameState.PLAYER_TURN && <PlayerTurn />}
         </>
       )}
     </>

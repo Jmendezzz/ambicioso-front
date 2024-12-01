@@ -1,8 +1,6 @@
 
-export function getDiceNumber() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(Math.floor(Math.random() * 6) + 1);
-        }, 1000);
-    });
+const apiUrl = 'http://localhost:5000';
+
+export function getDiceNumber(): Promise<number> {
+    return fetch(`${apiUrl}/get-score`).then((response) => response.json());
 }
