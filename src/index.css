@@ -3,6 +3,7 @@
 
 @theme{
   --color-primary: #00BF63;
+  --color-primary-dark: #017e46;
 }
 body {
   background: url('assets/background.jpg') no-repeat;
