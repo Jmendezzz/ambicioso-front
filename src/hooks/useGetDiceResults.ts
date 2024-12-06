@@ -21,15 +21,7 @@ export function useGetDiceResults() {
       dispatch({type:GameActionsTypes.CHANGE_GAME_STATE, payload: GameState.QUESTION});
       return;
     }
-    dispatch({
-      type: GameActionsTypes.UPDATE_PLAYERS,
-      payload: state.players.map((p) => {
-        if (p.id === player.id) {
-          return { ...p, score: p.score + diceResult };
-        }
-        return p;
-      }),
-    });
+    dispatch({type:GameActionsTypes.INCREASE_CURRENT_PLAYER_SCORE, payload: diceResult});
   };
 
   const getDiceNumberResult = async () => {

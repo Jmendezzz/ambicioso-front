@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 
 function Question() {
   const { state } = useGameContext();
+  console.log('Question -> state', state);
   const question = useGetQuestion();
   const currentPlayer = state.players.find((player) => player.id === state.currentPlayerId)?.name
 

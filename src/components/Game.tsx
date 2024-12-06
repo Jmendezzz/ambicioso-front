@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import PlayerTurn from './PlayerTurn';
 import Leaderboard from './Leaderboard';
 import Question from './Question';
+import Ended from './Ended';
 
 function Game() {
   const { state } = useGameContext();
@@ -37,6 +38,7 @@ function Game() {
           {state.gameState === GameState.PLAYER_TURN && <PlayerTurn />}
           {state.gameState === GameState.LEADERBOARD && <Leaderboard />}
           {state.gameState === GameState.QUESTION && <Question/>}
+          {state.gameState === GameState.ENDED && <Ended />}
         </>
       )}
     </>

@@ -134,3 +134,98 @@ input:focus {
 .left { transform: rotateY(-90deg) translateZ(100px); }
 .top { transform: rotateX(90deg) translateZ(100px); }
 .bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+
+.flames {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.flame {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #00bf63, transparent);
+  border-radius: 50%;
+  animation: flame 1s infinite ease-in-out;
+}
+
+.flame-1 {
+  top: 30%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.flame-2 {
+  top: 20%;
+  left: 50%;
+  animation-delay: 0.3s;
+}
+
+.flame-3 {
+  top: 40%;
+  left: 80%;
+  animation-delay: 0.6s;
+}
+
+@keyframes flame {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}
+
+.group:hover .animate-fire {
+  background: linear-gradient(45deg, #00bf63, #00904b);
+}
+
+@keyframes particle {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(0);
+    opacity: 0;
+  }
+}
+
+.particle {
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #ffcc00;
+  border-radius: 50%;
+  animation: particle 3s linear infinite;
+}
+
+.particle:nth-child(2) {
+  left: 20%;
+  animation-delay: 0.2s;
+}
+
+.particle:nth-child(3) {
+  left: 40%;
+  animation-delay: 0.4s;
+}
+
+.particle:nth-child(4) {
+  left: 60%;
+  animation-delay: 0.6s;
+}
+
+.particle:nth-child(5) {
+  left: 80%;
+  animation-delay: 0.8s;
+}

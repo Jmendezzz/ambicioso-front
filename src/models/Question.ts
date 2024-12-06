@@ -7,6 +7,7 @@ export interface Options {
 
 export interface Question {
   correct_answer: string;
+  correct_option: string;
   options?: Options;
   question: string;
 }

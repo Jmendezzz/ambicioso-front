@@ -21,6 +21,7 @@ function TrueFalseQuestion({ question }: { question: Question }) {
     }
 
     setTimeout(() => {
+      dispatch({type:GameActionsTypes.UPDATE_TURN});
       dispatch({ type: GameActionsTypes.CHANGE_GAME_STATE, payload: GameState.LEADERBOARD });
     }, 2000);
   };
