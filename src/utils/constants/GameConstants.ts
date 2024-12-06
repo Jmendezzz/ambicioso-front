@@ -1,6 +1,7 @@
 export const MAXIMUM_SCORE = 50;
 export const MIN_PLAYERS = 2;
 export const REGRESSIVE_COUNTDOWN = 6;
+export const SCORE_DECREMENT_TRUE_FALSE_QUESTION = 10;
 
 export const PLANTARSE_PHRASE = 'PLANTARSE';
 export const AMBICIOSO_PHRASE = 'AMBICIOSO';

@@ -4,6 +4,7 @@ import ProgressBar from "./ProgressBar"; // Import the ProgressBar component
 import { GameActionsTypes } from "../reducers/gameReducer";
 import { GameState } from "../models/GameState";
 import { useGameContext } from "../contexts/GameContext";
+import { SCORE_DECREMENT_TRUE_FALSE_QUESTION } from "../utils/constants/GameConstants";
 
 function TrueFalseQuestion({ question }: { question: Question }) {
   const { dispatch } = useGameContext();
@@ -16,6 +17,7 @@ function TrueFalseQuestion({ question }: { question: Question }) {
       setFeedback("Correcto");
     } else {
       setFeedback("Incorrecto");
+      dispatch({ type: GameActionsTypes.DECREASE_CURRENT_PLAYER_SCORE, payload: SCORE_DECREMENT_TRUE_FALSE_QUESTION });
     }
 
     setTimeout(() => {

@@ -21,13 +21,15 @@ function DiceResultScanner() {
   const player = state.players.find(
     (player) => player.id === state.currentPlayerId
   );
-  const countdown = useCountdown(REGRESSIVE_COUNTDOWN, getDiceNumberResult);
-
   useKeyPress(() => {
     if (result === null && !loading) {
-      getDiceNumberResult();
+      setTimeout(() => {
+        getDiceNumberResult();
+      }, 1000);
     }
   }, 'Space');
+
+  const countdown = useCountdown(REGRESSIVE_COUNTDOWN, getDiceNumberResult);
 
   const handleLeftClick = () => {
     dispatch({ type: GameActionsTypes.UPDATE_TURN });
