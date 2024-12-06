@@ -7,7 +7,7 @@ function DiceLoading() {
       <motion.img
         src={diceGif}
         alt="loading"
-        className="w-10 h-10"
+        className="w-20 h-20"
         initial={{ rotate: 0 }}
         animate={{ rotate: 360 }}
         transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
@@ -15,7 +15,7 @@ function DiceLoading() {
       <motion.img
         src={diceGif}
         alt="loading"
-        className="w-10 h-10"
+        className="w-20 h-20"
         initial={{ rotate: 0 }}
         animate={{ rotate: 360 }}
         transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
@@ -23,7 +23,7 @@ function DiceLoading() {
       <motion.img
         src={diceGif}
         alt="loading"
-        className="w-10 h-10"
+        className="w-20 h-20"
         initial={{ rotate: 0 }}
         animate={{ rotate: 360 }}
         transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}

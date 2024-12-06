@@ -7,6 +7,8 @@ import InitGame from './InitGame';
 import LoadingScreen from './LoadingScreen';
 import { AnimatePresence, motion } from 'framer-motion';
 import PlayerTurn from './PlayerTurn';
+import Leaderboard from './Leaderboard';
+import Question from './Question';
 
 function Game() {
   const { state } = useGameContext();
@@ -33,6 +35,8 @@ function Game() {
           {state.gameState === GameState.NOT_STARTED && <InitGame />}
           {state.gameState === GameState.ADDING_PLAYERS && <AddPlayers />}
           {state.gameState === GameState.PLAYER_TURN && <PlayerTurn />}
+          {state.gameState === GameState.LEADERBOARD && <Leaderboard />}
+          {state.gameState === GameState.QUESTION && <Question/>}
         </>
       )}
     </>

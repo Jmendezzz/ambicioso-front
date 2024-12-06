@@ -39,7 +39,10 @@ export default function AddPlayers() {
 
   const handleAddPlayer = () => {
     const players = state.players.map((player, index) => {
-      return { ...player, name: `Jugador ${index + 1}` };
+      if(player.name.startsWith('Jugador')){
+        return { ...player, name: `Jugador ${index + 1}` };
+      }
+      return player;
     });
     const newPlayer = {
       id: Date.now(),
@@ -60,7 +63,6 @@ export default function AddPlayers() {
   const onGameStart = () => {
     dispatch({
       type: GameActionsTypes.UPDATE_TURN,
-      payload: state.players[0].id,
     });
     dispatch({ type: GameActionsTypes.CHANGE_GAME_STATE, payload: GameState.PLAYER_TURN });
   };

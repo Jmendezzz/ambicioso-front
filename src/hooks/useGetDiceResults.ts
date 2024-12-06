@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { getDiceNumber } from '../services/ambiciosoService';
 import { useGameContext } from '../contexts/GameContext';
 import { GameActionsTypes } from '../reducers/gameReducer';
+import { GameState } from '../models/GameState';
 
 export function useGetDiceResults() {
   const [result, setResult] = useState<number | null>(null);
@@ -17,7 +18,7 @@ export function useGetDiceResults() {
     if (!player) return;
 
     if (diceResult === 1) {
-      console.log('Player lost', player);
+      dispatch({type:GameActionsTypes.CHANGE_GAME_STATE, payload: GameState.QUESTION});
       return;
     }
     dispatch({

@@ -10,7 +10,7 @@ export interface GameContextType {
 const initialState: GameContextState = {
     gameState: GameState.NOT_STARTED,
     players: [
-        { id: 1, name: 'Jugador 1', score: 20 },
+        { id: 1, name: 'Jugador 1', score: 0 },
         { id: 2, name: 'Jugador 2', score: 0 },
     ],
 }
